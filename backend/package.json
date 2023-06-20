@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "This app is for our college flagship event, rievera",
   "main": "app.js",
-  "author": "",
+  "author": "Gaurang Rastogi",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
@@ -21,10 +21,8 @@
     "nodemon": "^2.0.20"
   },
   "scripts": {
-      "dev": "nodemon --exec babel-node src/app.js",
-      "build": "babel src -d dist",
-      "start": "node dist/app.js",
-      "both-dev": "concurrently \"npm run dev\" \"npm --prefix ../client/ run dev\""
+    "start": "node app.js",
+    "test": "npm start"
   }
 
 }

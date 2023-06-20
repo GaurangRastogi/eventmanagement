@@ -1,5 +1,5 @@
 import React, { useState ,useEffect} from 'react'
-import { navigate,useLocation, useNavigate } from 'react-router-dom';
+import {useLocation} from 'react-router-dom';
 import EventCard from '../../components/Card/Card';
 import Navbar from '../../components/Navbar/Navbar';
 function UserEvents() {
@@ -12,11 +12,10 @@ function UserEvents() {
 
     useEffect(()=>{
         const getUserEvent= async()=>{
-            const response = await fetch(`http://localhost:3000/events/${id}`);
+            const response = await fetch(process.env.REACT_APP_API_URL+`events/${id}`);
             const json = await response.json();
             setUserEvent(userEvent=>[...userEvent,...json]);
         }
-        {console.log(userEvent)}
         getUserEvent();
     },[])
     

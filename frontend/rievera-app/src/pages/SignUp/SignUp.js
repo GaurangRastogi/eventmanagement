@@ -25,7 +25,7 @@ function SignUp() {
 
     const SignUp= async()=>{
        
-        const response=await fetch('http://localhost:3000/signUp',{
+        const response=await fetch(process.env.REACT_APP_API_URL+'signUp',{
             method: "POST",
             headers: {
                 'Content-type': 'application/json'

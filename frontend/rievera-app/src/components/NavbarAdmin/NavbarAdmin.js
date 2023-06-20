@@ -59,7 +59,7 @@ function NavbarAdmin({ username, password, id ,getEvents}) {
     const imageLink = document.getElementById("imageLink").value;
     const description = document.getElementById("description").value;
     const websiteLink = document.getElementById("websiteLink").value;
-    const response = await fetch("http://localhost:3000/addevents", {
+    const response = await fetch(process.env.REACT_APP_API_URL+"addevents", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -75,7 +75,7 @@ function NavbarAdmin({ username, password, id ,getEvents}) {
     });
 
     const json = await response.json();
-    console.log(json.message);
+    // console.log(json.message);
     setDialog(false);
     getEvents();
   };

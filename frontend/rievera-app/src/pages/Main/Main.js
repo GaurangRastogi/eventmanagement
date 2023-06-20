@@ -15,7 +15,7 @@ function Main() {
     }
     useEffect(()=>{
       const getEvents= async()=>{
-        const response = await fetch('http://localhost:3000/getevents');
+        const response = await fetch(process.env.REACT_APP_API_URL+'getevents');
         const json = await response.json();
         setEvents(json);
       }

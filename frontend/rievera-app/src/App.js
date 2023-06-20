@@ -23,7 +23,6 @@ function App() {
   useEffect(() => {
     document.title = 'Rievera';
   }, []);
-
   const router = createBrowserRouter([
     {
       path: "/",

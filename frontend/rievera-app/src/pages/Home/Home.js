@@ -1,4 +1,4 @@
-import React, { Component, useEffect,useState } from 'react'
+import React, {useEffect,useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import Navbar from '../../components/Navbar/Navbar';
 import EventCard from '../../components/Card/Card';
@@ -24,13 +24,13 @@ function Home() {
   }
 
   const getEvents= async()=>{
-    const response = await fetch('http://localhost:3000/getevents');
+    const response = await fetch(process.env.REACT_APP_API_URL+'getevents');
     const json = await response.json();
     setEvents(json);
   }
 
   const getUserEvent= async()=>{
-    const response = await fetch(`http://localhost:3000/events/${id}`);
+    const response = await fetch(process.env.REACT_APP_API_URL+`events/${id}`);
     const json = await response.json();
     setUserEvent(userEvent=>[...userEvent,...json]);
   }

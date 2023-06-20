@@ -5,7 +5,6 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { useNavigate,Navigate} from 'react-router-dom';
 import AlertDialog from '../Alert/Alert';
 import { useState } from 'react';
 import TextField from "@mui/material/TextField";
@@ -17,15 +16,14 @@ import DialogTitle from "@mui/material/DialogTitle";
 function EventCard({eventname,state,userId,del_event}) {
   const [alert,setAlert]=useState(false);
   const [update,setUpdate]=useState(false);
-  const navigate=useNavigate();
   const url=eventname.website;
   const onclick=()=>{
     window.open(url,"_blank");
   }
 
   const Register= async()=>{
-    
-    const response=await fetch('http://localhost:3000/register',{
+  
+    const response=await fetch(process.env.REACT_APP_API_URL+'register',{
         method: "POST",
         headers: {
             'Content-type': 'application/json'
@@ -38,14 +36,14 @@ function EventCard({eventname,state,userId,del_event}) {
         )
     });
     
-    const json = await response.json();
+    await response.json();
     window.location.reload(false);
 
   }
 
   const Deregister= async()=>{
     
-    const response=await fetch('http://localhost:3000/deleteRegister',{
+    const response=await fetch(process.env.REACT_APP_API_URL+'deleteRegister',{
         method: "DELETE",
         headers: {
             'Content-type': 'application/json'
@@ -57,7 +55,8 @@ function EventCard({eventname,state,userId,del_event}) {
             }
         )
     });
-    const json = await response.json();
+
+    await response.json();
     window.location.reload(false);
 
   }
@@ -75,7 +74,7 @@ function EventCard({eventname,state,userId,del_event}) {
     const description = document.getElementById("description").value;
     const websiteLink = document.getElementById("websiteLink").value;
 
-    const response = await fetch("http://localhost:3000/event/update", {
+    const response = await fetch(process.env.REACT_APP_API_URL+"event/update", {
       method: "PUT",
       headers: {
         "Content-type": "application/json",
@@ -91,6 +90,7 @@ function EventCard({eventname,state,userId,del_event}) {
       }),
     });
 
+    await response.json();
     setUpdate(false);
     window.location.reload(false);
   }
@@ -98,10 +98,10 @@ function EventCard({eventname,state,userId,del_event}) {
 
   const utility=()=>{
     const deleteEvent= async()=>{
-      const response = await fetch(`http://localhost:3000/deleteEvent/${userId}`,{
+      const response = await fetch(process.env.REACT_APP_API_URL+`deleteEvent/${userId}`,{
         method:"DELETE"
       });
-      const json = await response.json();
+      await response.json();
       setAlert(false);
       window.location.reload(false);
     }
@@ -112,7 +112,7 @@ function EventCard({eventname,state,userId,del_event}) {
   }
 
   const handleClick=async()=>{
-      console.log(state);
+      // console.log(state);
       if(state==="Register")
           Register();
       else if(state==="Deregister")
